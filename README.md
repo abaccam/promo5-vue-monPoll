@@ -1,4 +1,4 @@
-# promo5-vue-poll
+# promo5-vue-monPoll
 
 > A Vue.js project
 
