@@ -1,19 +1,19 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <CreatePoll/>
+    <answer/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
-import CreatePoll from './components/CreatePoll'
+import answer from './components/answer'
 
 
 export default {
   name: 'App',
   components: {
-    CreatePoll
+    answer
   }
 }
 </script>
