@@ -3,36 +3,39 @@
     <section>
         <h1>* JEAN POLL *</h1>
         <form @submit.prevent="onSubmit()">
-  <div class="form-group">
-    <input type="text" name="title" placeholder="Title" v-model="poll.title" required>    
-  </div>
-  <div
-    v-for="(option, index) in poll.options" 
-    :key="index"  class="form-group">  
-        <input type="text" 
-        :name="`option${index + 1}`"
-        :placeholder="`Option ${index + 1}`"
-        v-model="poll.options[index]" required>
+          
+          <div class="form-group">
+            <input type="text" name="title" placeholder="Title" 
+            v-model="poll.title" required>    
+          </div>
+          
+          <div v-for="(option, index) in poll.options" 
+          :key="index"  class="form-group">
 
-    <button
-    type="button"
-    class="btn btn-link"
-    @click="remove(index)"
-    v-if="poll.options.length > 2">
-      Remove
-    </button>
+            <input type="text" 
+            :name="`option${index + 1}`"
+            :placeholder="`Option ${index + 1}`"
+            v-model="poll.options[index]" required>
 
-  </div>
-  <div class="form-group">
-    <button
-    type="button"
-    class="btn btn-link"
-    @click="add()">
-      Add
-    </button>
-  </div>
-  <input type="submit">
-</form>
+            <button
+            type="button"
+            class="btn btn-link"
+            @click="remove(index)"
+            v-if="poll.options.length > 2">
+              Remove
+            </button>
+          </div>
+
+          <div class="form-group">
+            <button
+            type="button"
+            class="btn btn-link"
+            @click="add()">
+              Add
+            </button>
+          </div>
+          <input type="submit">
+        </form>
     </section>
   
 </template>
