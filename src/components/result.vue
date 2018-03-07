@@ -1,21 +1,20 @@
 <template>
 
-  <section id="barres">
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  <section id="barres" >
+    <h2>{{poll.title}}</h2>
+    <h5>{{totalCount}} vote(s) au total.</h5>
+    <div v-for="option in poll.options" :key="option.id">
+      <label>{{option.text}}</label>
+      <div class="progress">
+        <div :value="option.count"
+            class="progress-bar" 
+            role="progressbar" 
+            :style="`width: ${getPercent(option.count)}%`">
+            {{getPercent(option.count)}}%
+        </div>  
+      </div>
     </div>
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-    <div class="progress">
-     <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-    <div class="progress">
-     <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
+
   </section>
 
 </template>
@@ -27,11 +26,6 @@ export default {
 
   data() {
     return {
-        pourcent :{
-          
-
-        },
-        
         poll:{
           id: 1,
           title: "Que boire au petit dej ?",
@@ -44,14 +38,22 @@ export default {
         }
     } 
   },
-
-  methods: {
-    total() {
-      console.log(this.poll.title, this.poll.options);
+  computed: {
+    totalCount(){
+      let total = 0
+      this.poll.options.forEach((option) => {
+        total += option.count
+      })
+      return total
     }
   },
 
-};
+  methods: {
+    getPercent(count){
+      return (count/this.totalCount) * 100
+    }
+  }
+}
 </script>
 
 <style>
